@@ -1,0 +1,16 @@
+{
+  "name": "genetic-hello-world",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^2.0.3"
+  },
+  "author": "",
+  "license": "MIT"
+}
