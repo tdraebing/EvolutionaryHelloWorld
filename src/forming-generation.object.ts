@@ -5,8 +5,7 @@ import { Tournament } from './tournament.object';
 
 
 export class FormingGeneration extends Generation {
-    individuals: Array<Individual>;
-    parents: Array<Individual>;
+    parents: Array<Individual> = [];
     config: Config;
     parentGeneration: Generation;
 
@@ -18,7 +17,8 @@ export class FormingGeneration extends Generation {
 
     private _selectIndividualsByFitness() {
         super.sortIndividualsByScore();
-        for (let i = 0; i < Math.floor(this.parentGeneration.individuals.length * this.config.fractionBestForBreeding); i++) {
+        let selectionSize: number = Math.floor(this.parentGeneration.individuals.length * this.config.fractionBestForBreeding);
+        for (let i = 0; i < selectionSize; i++) {
             this.parents.push(this.parentGeneration.individuals.pop());
         }
     }
@@ -28,22 +28,25 @@ export class FormingGeneration extends Generation {
         this.parents = this.parents.concat(tournament.performTournament());
     }
 
-    private _recombination(father, mother): Individual[] {
-        var splitPos = Math.floor(Math.random() * this.config.target.length);
-        var boy = mother.name.slice(0, splitPos) + father.name.slice(splitPos, father.name.length);
-        var girl = father.name.slice(0, splitPos) + mother.name.slice(splitPos, mother.name.length);
-        return [boy, girl];
+    private _recombination(father, mother) {
+        let splitPos = Math.floor(Math.random() * this.config.target.length);
+        let boy: Individual = new Individual(this.config);
+        let girl: Individual = new Individual(this.config);
+        boy.setName(mother.name.slice(0, splitPos) + father.name.slice(splitPos, father.name.length));
+        girl.setName(father.name.slice(0, splitPos) + mother.name.slice(splitPos, mother.name.length));
+        this.individuals.push(boy, girl);
     }
 
     private _breedChildren() {
         while (this.parents.length > 1) {
-            var fatherId = Math.floor(Math.random() * this.parents.length);
-            var father = this.parents[fatherId];
+            let fatherId = Math.floor(Math.random() * this.parents.length);
+            let father = this.parents[fatherId];
             this.parents.splice(fatherId, 1)
-            var motherId = Math.floor(Math.random() * this.parents.length);
-            var mother = this.parents[motherId];
-            this.parents.splice(motherId, 1)
-            this.individuals.concat(this._recombination(father, mother))
+            let motherId = Math.floor(Math.random() * this.parents.length);
+            let mother = this.parents[motherId];
+            this.parents.splice(motherId, 1);
+            this._recombination(father, mother);
+            this.individuals.push(father, mother);
         }
     }
 
@@ -58,7 +61,6 @@ export class FormingGeneration extends Generation {
         this._selectIndividualsByFitness();
         this._selectIndividualsByTournament();
         this._breedChildren();
-        this.individuals = this.individuals.concat(this.parents);
         this._mutate();
     }
 

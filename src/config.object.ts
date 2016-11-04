@@ -10,8 +10,8 @@ export class Config{
     populationSize: number = 10000;
 
     //evolution parameters
-    mutationThreshold: number = 0.3;
-    tournamentRoundLength: number = Math.ceil(this.populationSize * 0.1);
+    mutationThreshold: number = 0.1;
+    tournamentRoundLength: number = Math.ceil(this.populationSize * 0.5);
     fractionBestForBreeding: number = 0.1;
 
     constructor() { }

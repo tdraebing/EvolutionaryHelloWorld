@@ -1,7 +1,7 @@
 import { Individual } from './individual.object';
 
 export class Generation{
-    individuals: Array<Individual>;
+    individuals: Array<Individual> = [];
 
     constructor(){}
 

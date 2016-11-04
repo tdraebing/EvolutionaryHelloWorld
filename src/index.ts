@@ -6,13 +6,13 @@ import { Config } from './config.object';
     let config: Config = new Config();
     //Configure the run here by using setter methods:
     //====================================================================================
-    //this.config.setAlphabet("abcdefghijklmnopqrstuvwxyz ");
-    //this.config.setTarget("hello world");
-    //this.config.setIterations(10000);
-    //this.config.setPopulationSize(10000);
-    //this.config.setMutationThreshold(0.3);
-    //this.config.setTournamentRoundLength(Math.ceil(this.populationSize * 0.1));
-    //this.config.setFractionBestForBreeding(0.1);
+    //config.setAlphabet("abcdefghijklmnopqrstuvwxyz ");
+    //config.setTarget("hello world");
+    //config.setIterations(10000);
+    //config.setPopulationSize(10000);
+    //config.setMutationThreshold(0.1);
+    //config.setTournamentRoundLength(Math.ceil(populationSize * 0.5));
+    //config.setFractionBestForBreeding(0.1);
 
     //Create your starting generation
     let generation: CurrentGeneration = new CurrentGeneration(config);

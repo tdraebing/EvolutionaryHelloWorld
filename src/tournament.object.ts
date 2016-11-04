@@ -17,7 +17,7 @@ export class Tournament{
         let populationSize: number = this.participants.individuals.length;
         let championId: number = Math.floor(Math.random() * populationSize);
         let champion: Individual = this.participants.individuals[championId];
-        for (var i = 1; i <= 10; i++) {
+        for (var i = 1; i <= this.config.tournamentRoundLength; i++) {
             let competitorId: number = Math.floor(Math.random() * populationSize);
             let competitor: Individual = this.participants.individuals[competitorId];
             if (champion.score <= competitor.score) {

@@ -5,18 +5,15 @@ export class Individual {
     alphabet: string;
     mutationThreshold: number;
 
+    //TODO: make private and write getters & setters
     name: string;
     score: number;
 
-    constructor(config: Config);
-    constructor(config: Config, individualName: string = null) {
+    constructor(config: Config) {
+        this.name = "";
         this.target = config.target;
         this.alphabet = config.alphabet;
         this.mutationThreshold = config.mutationThreshold;
-        if (individualName != null) {
-            this.name = individualName;
-            this.score = this.evaluateScore();
-        }
     }
 
     setName(individualName: string) {
@@ -49,5 +46,6 @@ export class Individual {
             }
         }
         this.name = mutatedName;
+        this.score = this.evaluateScore();
     }
 }
