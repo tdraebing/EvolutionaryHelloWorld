@@ -39,7 +39,6 @@ export class CurrentGeneration extends Generation {
 
     runEvolutionProcess(): number {
         console.log('Iterating over generations...');
-        console.log(this.config.iterations);
         for (let i = 1; i <= this.config.iterations; i++){
             this.shiftToNextGeneration();
             super.sortIndividualsByScore();
